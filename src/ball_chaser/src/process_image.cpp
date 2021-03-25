@@ -26,8 +26,8 @@ void process_image_callback(const sensor_msgs::Image img)
     int white_pixel = 255;
     bool chasing = false;
 
-    for (int i = 0; i < img.height * img.step; i++) {
-	    if (img.data[i] == white_pixel) {
+    for (int i = 0; i < img.height * img.step - 2; i++) {
+	    if (img.data[i] == white_pixel && img.data[i+1] == white_pixel && img.data[i+2] == white_pixel) {
 		    // cause camera have 3 colors RGB
 		    chasing = true;
 		    int col = i / 3 % img.width;
